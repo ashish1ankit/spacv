@@ -1,0 +1,25 @@
+<div>
+<p>Your to do list user! </p>
+
+    <!-- <div class="seachInput">
+<input type="text" placeholder="Type to search!"/>
+</div> -->
+<table>
+    
+<th><button (click)="toggelSortBySlNo()">Sl No.{{!sortSlStatus?'⬆️':'⬇️'}}</button></th>
+<th>Notes <div><input class="notes"  type="search" id="searchNotes" placeholder="Type to search!"/></div></th>
+<th><button (click)="toggelSortByDate()">Date {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><div class="searchBtn"><input class="notes" type="text" placeholder="Type to search!"/></div></th>
+<th><button>Checked</button></th>
+<tr *ngFor="let data of listData" style="text-align: center;">
+    <td>{{data.id}}</td>
+    <td><input class="note" [ngClass]="{'inputNote':data.checked}" [(ngModel)]="data.name" /></td>
+    <td>{{data.ndate}}</td>
+    <td title="Click here remove it" >
+        <button (click)="toggleStrciThroughNoteClass(data.id)">{{!data.checked?'✔️':'❌'}}</button></td>
+</tr>
+</table>
+<div style="padding: 10px;">
+    <button class="addBtn" style="background: greenyellow;" title="Click here to add new entry" (click)="addListEntry()">➕</button> 
+</div>
+
+</div>

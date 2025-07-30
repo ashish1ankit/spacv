@@ -1,0 +1,24 @@
+table{
+    width: 100%;
+    border-style: dotted;
+    border-radius: 2px;
+}
+.inputNote{
+    text-decoration: line-through red;
+}
+.addBtn{
+    position:absolute;
+    right: 40px;
+    width: 110px;
+}
+.note{
+    width: 100%;  
+    padding-left: 20px;
+    padding-right: 20px;
+}
+th,td{
+    background-color: bisque;
+    border: 1px blueviolet;
+    border-style: groove;
+    padding: 2px;
+}
