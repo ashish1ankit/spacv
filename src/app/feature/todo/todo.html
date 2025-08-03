@@ -1,4 +1,4 @@
-<div>
+<div class="mainDiv">
 <p>Your to do list user! </p>
 
     <!-- <div class="seachInput">
@@ -8,7 +8,7 @@
     
 <th><button (click)="toggelSortBySlNo()">Sl No.{{!sortSlStatus?'⬆️':'⬇️'}}</button></th>
 <th>Notes <input class="notes"  (input)="onTextChangeNotes($event)" type="search"  placeholder="Type to search!"/></th>
-<th><button (click)="toggelSortByDate()">Date {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><input class="notes" type="text" placeholder="Type to search!"/></th>
+<th><button (click)="toggelSortByDate()">Date {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><input class="notes" (input)="onTextChangeDates($event)" type="search" placeholder="Type to search!"/></th>
 <th><button>Checked</button></th>
 <tr *ngFor="let data of userNotesData" style="text-align: center;">
     <td>{{data.id}}</td>

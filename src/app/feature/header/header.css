@@ -1,0 +1,14 @@
+.mainDiv{
+    background: #4fbce3;
+    width: 100%;
+    padding-bottom: 20px;
+    padding: auto;
+    border-radius: 12px;
+    border-style: ridge;
+}
+.title{
+    background: #a130d2;
+    text-align: center;
+    color: aqua;
+    border-radius: 12px;
+}

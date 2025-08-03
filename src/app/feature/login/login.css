@@ -1,0 +1,18 @@
+.mainDiv{
+    padding-top: 20px;
+    align-items: center;
+    align-content: center;
+    background: #4fbce3;
+    width: 100%;
+    border-radius: 12px;
+    /* padding-bottom: 20px; */
+    border-style: ridge;
+    /* .mainDiv{ */
+     padding-bottom: 398px;
+     padding-top: 20px;
+/* } */
+}
+.body{
+    align-items: center;
+    align-content: center;
+}

@@ -10,6 +10,7 @@ table{
     position:absolute;
     right: 40px;
     width: 110px;
+    
 }
 .note{
     width: 100%;  
@@ -22,3 +23,6 @@ th,td{
     border-style: groove;
     padding: 2px;
 }
+.mainDiv{
+ padding-bottom: 300px;
+     padding-top: 20px;}

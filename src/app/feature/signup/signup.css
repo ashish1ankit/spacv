@@ -1,0 +1,11 @@
+.mainDiv{
+    background: #4fbce3;
+    width: 100%;
+    /* padding-bottom: 20px; */
+    /* padding: auto; */
+    border-radius: 12px;
+    /* padding-top: 20px; */
+     padding-bottom: 340px;
+     padding-top: 20px;
+    border-style: ridge;
+}

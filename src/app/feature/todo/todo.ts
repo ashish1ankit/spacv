@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 
 @Component({
@@ -16,6 +17,7 @@ export class Todo {
   Todo() {
     this.searchNotesInput = this.userNotesData;
   }
+  // constructor(private router: Router) { }
 
   sortSlStatus = false;
   preDateStatus = false;
@@ -88,7 +90,7 @@ export class Todo {
   }
 
   addListEntry() {
-    this.mainData.push({ id: this.userNotesData.length + 1, name: 'New Task', ndate: (new Date()).toLocaleDateString(), checked: false });
+    this.mainData.push({ id: this.mainData.length + 1, name: 'New Task', ndate: (new Date()).toLocaleDateString(), checked: false });
   }
 
   // this.searchNotesInput=document.getElementById('searchNotes');
@@ -102,8 +104,6 @@ export class Todo {
   // const regex = new RegExp(pattern, "i");
   searchRequestSubsubscription: Subscription[] = [];
   onTextChangeNotes(event: Event) {
-    // this.cancelPendingRequests();
-    var searchedData = [];
     const value = (event.target as HTMLInputElement).value;
     if (value) {
       this.userNotesData = this.userNotesData.filter(row =>
@@ -113,12 +113,26 @@ export class Todo {
     else {
       this.userNotesData = this.mainData;
     }
-
-    // const matches = this.searchWithList(value);
-    // for(){const matches = sentence.match(regexGlobal);}
-
-    // console.log(JSON.stringify(this.userNotesData));
-    // this.searchRequestSubsubscription.push(searchedData);
+  }
+  onTextChangeDates(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    if (value) {
+      console.log(" " + JSON.stringify(value));
+      this.userNotesData = this.userNotesData.filter(row => {
+        const itemDate = new Date(row.ndate);
+        console.log(" " + JSON.stringify(itemDate));
+        const dateVal = new Date(value);
+        console.log(": " + JSON.stringify(dateVal));
+        if (itemDate.getFullYear() === dateVal.getFullYear() ||
+          itemDate.getMonth() === dateVal.getMonth() ||
+          itemDate.getDate() === dateVal.getDate()) {
+          return;
+        };
+      });
+    }
+    else {
+      this.userNotesData = this.mainData;
+    }
   }
   searchByNotes(note: string) {
     this.isStrickThrough = !this.isStrickThrough;
@@ -133,4 +147,6 @@ export class Todo {
     }
     return notesS;
   }
+
+  
 }
