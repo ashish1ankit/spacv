@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-todo',
@@ -18,12 +19,16 @@ export class Todo {
     this.searchNotesInput = this.userNotesData;
   }
   // constructor(private router: Router) { }
-actionTogleStatus = false;
+  actionTogleStatus = false;
+  excelData:any;
+  uploadedNoteExcels: Blob | null = null;
+  uploadExcelStatus = false;
   sortSlStatus = false;
   preDateStatus = false;
   sortDateStatus = false;
   isStrickThrough = false;
   searchNotesInput: any[] = [];
+  uploadExcels: any[] = [];
   // userNotesData:any=[];
   mainData = [{
     id: 1,
@@ -58,11 +63,14 @@ actionTogleStatus = false;
       this.countSort = 0;
     }
   }
-actionToggleStatus() {
-  this.actionTogleStatus = !this.actionTogleStatus;
+  actionToggleStatus() {
+    this.actionTogleStatus = !this.actionTogleStatus;
     // console.log(JSON.stringify(data.userNotesData));
     // this.userNotesData = data;
   }
+
+  cancelPopUpload() { this.uploadExcelStatus = false; }
+  toggleDownloadExcel() { this.actionTogleStatus = !this.actionTogleStatus; }
   toggelSortByDate() {
     // console.log("methdohi: toggelSortByDate"+JSON.stringify(this.listData));
     this.preDateStatus = true;
@@ -151,6 +159,51 @@ actionToggleStatus() {
     }
     return notesS;
   }
+  toggleUploadExcel() {
+    this.actionTogleStatus = !this.actionTogleStatus;
+    this.uploadExcelStatus = !this.uploadExcelStatus;
+  }
 
-  
+  onSelectNotesExcel(event: any) {
+    const inputNotesExcel = event.target as HTMLInputElement;
+    if (inputNotesExcel && inputNotesExcel.files) {
+      for (let i = 0; i < inputNotesExcel.files.length; i++) {
+        console.log("Uploaded file: " + inputNotesExcel.files[i].name);
+        this.uploadExcels.push(inputNotesExcel.files[i].name);
+      }
+      this.uploadedNoteExcels = inputNotesExcel.files[0];
+    }
+  }
+  successUpload() {
+    if (this.uploadedNoteExcels && this.uploadedNoteExcels) {
+this.processUploadedExcels();
+      this.uploadExcelStatus = false;
+    }
+    else {
+      alert("Please upload a single excel!");
+    }
+  }
+processUploadedExcels(){
+  if(this.uploadedNoteExcels){
+     const reader = new FileReader();
+
+  reader.onload = (e: any) => {
+    const arrayBuffer = e.target.result;
+
+    // SheetJS can read ArrayBuffer - use type: 'array'
+    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+    const wsname = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[wsname];
+
+    this.excelData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    console.log('Excel file contents:', this.excelData);
+  };
+
+  reader.readAsArrayBuffer(this.uploadedNoteExcels); // Use ArrayBuffer here!
+  console.log("Uploading data in excel "+(this.uploadExcels)+" progress!");
+}
+
+}
+
 }

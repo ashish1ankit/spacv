@@ -1,36 +1,52 @@
 <div class="mainDiv">
     <div>
-<p>Your to do list user! </p>
-<div class="btn-right-drp-down">
-<button (click)="actionToggleStatus()" class="act-drp-down-btn">Actions{{!actionTogleStatus?'⬇️':'⬆️'}}</button>
-<div class="drop-down-content" [ngClass]="{'show':actionTogleStatus}">
-<a>Upload Excel</a>
-<a>Download Excel</a>
-</div>
-<div>
+        <p>Your to do list user! </p>
+        <div class="btn-right-drp-down">
+            <button (click)="actionToggleStatus()"
+                class="act-drp-down-btn">Actions{{!actionTogleStatus?'⬇️':'⬆️'}}</button>
+            <div class="drop-down-content" [ngClass]="{'show':actionTogleStatus}">
+                <button (click)="toggleUploadExcel()">Upload Excel</button>
+                <button (click)="toggleDownloadExcel()">Download Excel</button>
+            </div>
+            <div>
 
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
     <!-- <div class="seachInput">
 <input type="text" placeholder="Type to search!"/>
 </div> -->
-<table>
-    
-<th><button (click)="toggelSortBySlNo()">Sl No.{{!sortSlStatus?'⬆️':'⬇️'}}</button></th>
-<th>Notes <input class="notes"  (input)="onTextChangeNotes($event)" type="search"  placeholder="Type to search!"/></th>
-<th><button (click)="toggelSortByDate()">Date {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><input class="notes" (input)="onTextChangeDates($event)" type="search" placeholder="Type to search!"/></th>
-<th><button>Checked</button></th>
-<tr *ngFor="let data of userNotesData" style="text-align: center;">
-    <td>{{data.id}}</td>
-    <td><input class="note" [ngClass]="{'inputNote':data.checked}" [(ngModel)]="data.name" /></td>
-    <td>{{data.ndate}}</td>
-    <td title="Click here remove it" >
-        <button (click)="toggleStrciThroughNoteClass(data.id)">{{!data.checked?'✔️':'❌'}}</button></td>
-</tr>
-</table>
-<div style="padding: 10px;">
-    <button class="addBtn" style="background: greenyellow;" title="Click here to add new entry" (click)="addListEntry()">➕</button> 
-</div>
+    <div class="upload-excel-content" [ngClass]="{'show':uploadExcelStatus}">
+        <h3>Please upload your Notes Excel!</h3>
+        <div class="uploadExcelDiv"><input type="file" multiple accept=".xls,.xlsx" (change)="onSelectNotesExcel($event)"></div>
+        <p style="color: red;">Size limit max 2mb</p>
+        <div class="uploadExcelBtnDiv">
+            <button class="act-submit-btn" (click)="successUpload()">Submit</button>
+            <button (click)="cancelPopUpload()" class="act-cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <div>
+        <table>
+
+            <th><button (click)="toggelSortBySlNo()">Sl No.{{!sortSlStatus?'⬆️':'⬇️'}}</button></th>
+            <th>Notes <input class="notes" (input)="onTextChangeNotes($event)" type="search"
+                    placeholder="Type to search!" /></th>
+            <th><button (click)="toggelSortByDate()">Date
+                    {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><input class="notes"
+                    (input)="onTextChangeDates($event)" type="search" placeholder="Type to search!" /></th>
+            <th><button>Checked</button></th>
+            <tr *ngFor="let data of userNotesData" style="text-align: center;">
+                <td>{{data.id}}</td>
+                <td><input class="note" [ngClass]="{'inputNote':data.checked}" [(ngModel)]="data.name" /></td>
+                <td>{{data.ndate}}</td>
+                <td title="Click here remove it">
+                    <button (click)="toggleStrciThroughNoteClass(data.id)">{{!data.checked?'✅':'❌'}}</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="padding: 20px;">
+        <button class="addBtn" title="Click here to add new entry" (click)="addListEntry()">➕</button>
+    </div>
 
 </div>

@@ -1,43 +1,106 @@
-table{
+table {
     width: 100%;
     border-style: dotted;
     border-radius: 2px;
 }
-.inputNote{
+
+.inputNote {
     text-decoration: line-through red;
 }
-.addBtn{
-    position:absolute;
+
+.addBtn {
+    position: absolute;
+    float: right;
     right: 40px;
-    width: 110px;
-    
+    width: auto;
+    background: greenyellow;
+
 }
-.note{
-    width: 100%;  
+
+.note {
+    width: 100%;
     padding-left: 20px;
     padding-right: 20px;
 }
-th,td{
+
+th,
+td {
     background-color: bisque;
     border: 1px blueviolet;
     border-style: groove;
     padding: 2px;
 }
-.mainDiv{
- padding-bottom: 300px;
-     padding-top: 20px;}
 
-.btn-right-drp-down{
+.mainDiv {
+    position: relative;
+    padding-bottom: 120px;
+    padding-top: 20px;
+}
+
+.btn-right-drp-down {
     float: right;
 }
-.drop-down-content{
+
+.drop-down-content {
     display: none;
-  position: absolute;
-   background-color: #95baff;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1; 
+    position: absolute;
+    background-color: #95baff;
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
+
 .drop-down-content.show {
-  display: block;
+    display: block;
+}
+
+.upload-excel-content {
+    display: none;
+
+    /* float: right; */
+    /* top: 40px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: #95baff; */
+    /* min-width: auto; */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000000000;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+.upload-excel-content.show {
+    display: block;
+}
+
+.act-cancel-btn {
+    float: left;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 127, 76);
+    border-radius: 8px;
+}
+
+.act-submit-btn {
+    float: right;
+    color: rgb(0, 0, 0);
+    background-color: rgb(80, 240, 117);
+    border-radius: 8px;
+}
+
+.uploadExcelDiv {
+    /* position: relative?;  */
+    padding-left: 60px;
+    padding-bottom: 10px;
+}
+
+.uploadExcelBtnDiv {
+    padding-top: 20px;
 }
