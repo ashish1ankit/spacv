@@ -18,7 +18,7 @@ export class Todo {
     this.searchNotesInput = this.userNotesData;
   }
   // constructor(private router: Router) { }
-
+actionTogleStatus = false;
   sortSlStatus = false;
   preDateStatus = false;
   sortDateStatus = false;
@@ -58,7 +58,11 @@ export class Todo {
       this.countSort = 0;
     }
   }
-
+actionToggleStatus() {
+  this.actionTogleStatus = !this.actionTogleStatus;
+    // console.log(JSON.stringify(data.userNotesData));
+    // this.userNotesData = data;
+  }
   toggelSortByDate() {
     // console.log("methdohi: toggelSortByDate"+JSON.stringify(this.listData));
     this.preDateStatus = true;

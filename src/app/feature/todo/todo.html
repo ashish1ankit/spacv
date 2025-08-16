@@ -1,6 +1,17 @@
 <div class="mainDiv">
+    <div>
 <p>Your to do list user! </p>
+<div class="btn-right-drp-down">
+<button (click)="actionToggleStatus()" class="act-drp-down-btn">Actions{{!actionTogleStatus?'⬇️':'⬆️'}}</button>
+<div class="drop-down-content" [ngClass]="{'show':actionTogleStatus}">
+<a>Upload Excel</a>
+<a>Download Excel</a>
+</div>
+<div>
 
+</div>
+</div>
+</div>
     <!-- <div class="seachInput">
 <input type="text" placeholder="Type to search!"/>
 </div> -->
