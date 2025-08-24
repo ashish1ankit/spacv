@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { ToastMessage } from "../../shared/component/toast-message/toast-message";
-
+import {saveAs} from 'file-saver';
 @Component({
   selector: 'app-todo',
   imports: [CommonModule, FormsModule, ToastMessage],
@@ -20,11 +20,16 @@ export class Todo {
   Todo() {
     this.searchNotesInput = this.userNotesData;
   }
+  constructor(private router:Router){}
+  navigateHomeComp() {
+    this.router.navigate(['/home']);
+  }
   // constructor(private router: Router) { }
   actionTogleStatus = false;
   excelData:any;
   uploadedNoteExcels: Blob | null = null;
   uploadExcelStatus = false;
+  isLogout=false;
   sortSlStatus = false;
   preDateStatus = false;
   sortDateStatus = false;
@@ -72,7 +77,9 @@ export class Todo {
   }
 
   cancelPopUpload() { this.uploadExcelStatus = false; }
-  toggleDownloadExcel() { this.actionTogleStatus = !this.actionTogleStatus; }
+  cancelPopLogout() { this.isLogout = false; }
+  toggleDownloadExcel() { this.actionTogleStatus = !this.actionTogleStatus;
+    this.downloadNotesAsExcel() }
   toggelSortByDate() {
     // console.log("methdohi: toggelSortByDate"+JSON.stringify(this.listData));
     this.preDateStatus = true;
@@ -166,6 +173,9 @@ export class Todo {
     this.actionTogleStatus = !this.actionTogleStatus;
     this.uploadExcelStatus = !this.uploadExcelStatus;
   }
+  toggleLogout() {
+    this.isLogout = !this.isLogout;
+  }
 
   onSelectNotesExcel(event: any) {
     const inputNotesExcel = event.target as HTMLInputElement;
@@ -208,5 +218,22 @@ processUploadedExcels(){
 }
 
 }
+downloadNotesAsExcel(): void {
+    const tableElement = document.getElementById('tab-notes');
+
+    // Convert HTML table to worksheet
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(tableElement);
+
+    // Create a new workbook and append the worksheet
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+    // Generate buffer
+    const wbout: ArrayBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save to file
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
+    saveAs(blob, 'notes'+new Date().toISOString()+'.xlsx');
+  }
 
 }

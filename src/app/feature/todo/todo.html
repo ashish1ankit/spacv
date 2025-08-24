@@ -1,12 +1,16 @@
 <div class="mainDiv">
     <div>
+        <Button (click)="toggleLogout()"
+         class="logOutBtn">Logout</Button>
+    </div>
+    <div>
         <p>Your to do list user! </p>
         <div class="btn-right-drp-down">
-            <button style="border-style: none;" (click)="actionToggleStatus()"
+            <button (click)="actionToggleStatus()"
                 class="act-drp-down-btn">Actions{{!actionTogleStatus?'⬇️':'⬆️'}}</button>
             <div class="drop-down-content" [ngClass]="{'show':actionTogleStatus}">
-                <button style="border-style: none;" (click)="toggleUploadExcel()">Upload Excel</button>
-                <button style="border-style: none;" (click)="toggleDownloadExcel()">Download Excel</button>
+                <button class="uploadExcel" (click)="toggleUploadExcel()">Upload Excel</button>
+                <button class="downloadExcel"(click)="toggleDownloadExcel()">Download Excel</button>
             </div>
             <div>
 
@@ -25,9 +29,16 @@
             <button style="border-style: none;" (click)="cancelPopUpload()" class="act-cancel-btn">Cancel</button>
         </div>
     </div>
+    <div class="logout-popup-content" [ngClass]="{'show':isLogout}">
+        <h3>Are you sure you want to logout?</h3>
+        <div class="uploadExcelBtnDiv">
+            <button (click)="cancelPopLogout()" class="act-cancel-btn">No</button>
+            <button class="act-submit-btn" (click)="navigateHomeComp()">Yes</button>
+        </div>
+    </div>
     <div>
-        <table>
-
+        <table id="tab-notes">
+<thead>
             <th class="slTh"><button class="slThBtn" (click)="toggelSortBySlNo()">Sl No.{{!sortSlStatus?'⬆️':'⬇️'}}</button></th>
             <th>Notes <input class="notes" (input)="onTextChangeNotes($event)" type="search"
                     placeholder="Type to search!" /></th>
@@ -35,6 +46,8 @@
                     {{preDateStatus?(!sortDateStatus?'⬆️':'⬇️'):''}}</button><input class="notesDateSearch"
                     (input)="onTextChangeDates($event)" type="search" placeholder="Type to search!" /></th>
             <th><button class="checkedTh">Checked</button></th>
+            </thead>
+            <tbody>
             <tr *ngFor="let data of userNotesData" style="text-align: center;">
                 <td>{{data.id}}</td>
                 <td><input class="note" [ngClass]="{'inputNote':data.checked}" [(ngModel)]="data.name" /></td>
@@ -43,6 +56,7 @@
                     <button class="checkedBtnItems" (click)="toggleStrciThroughNoteClass(data.id)">{{!data.checked?'✅':'❌'}}</button>
                 </td>
             </tr>
+            </tbody>
         </table>
     </div>
     <div class="btnAddDiv">
