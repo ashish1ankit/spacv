@@ -114,7 +114,10 @@ export class Todo {
     this.mainData.push({ id: this.mainData.length + 1, name: 'New Task', ndate: (new Date()).toLocaleDateString(), checked: false });
     this.toast.show("Added new Notes Successfully!");
   }
-
+addDataFromExcelEntry(note:string,ndate:Date,isChecked:boolean) {
+    this.mainData.push({ id: this.mainData.length + 1, name: note, ndate: (new Date(ndate)).toLocaleDateString(), checked:isChecked });
+    this.toast.show("Added new Notes Successfully!");
+  }
   // this.searchNotesInput=document.getElementById('searchNotes');
   // this.searchNotesInput.addEventListener();
   // results: userNotesData | null=null;
@@ -193,7 +196,7 @@ this.processUploadedExcels();
       this.uploadExcelStatus = false;
     }
     else {
-      alert("Please upload a single excel!");
+      this.toast.show("Please upload a single excel to continue!");
     }
   }
 processUploadedExcels(){
@@ -210,15 +213,23 @@ processUploadedExcels(){
     const worksheet = workbook.Sheets[wsname];
 
     this.excelData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    console.log('Excel file contents:', this.excelData);
+    console.log('Excel file contents:', this.excelData+typeof(this.excelData));
   };
 
   reader.readAsArrayBuffer(this.uploadedNoteExcels); // Use ArrayBuffer here!
+  // for (let i = 0; i < this.excelData.size; i++) {
+  //   // for(let j = 0; i < 3; i++)
+  //   console.log('Excel file contents aaa:', this.excelData[i]);
+  //   console.log('Excel file contents bb:', this.excelData[i][0]+' '+this.excelData[i][1]);
+  //   this.addDataFromExcelEntry(this.excelData[i][0],this.excelData[1],true);};
+  
   console.log("Uploading data in excel "+(this.uploadExcels)+" progress!");
+  this.toast.show("Uploading data from excel "+(this.uploadExcels) +" in-progress!");
 }
 
 }
 downloadNotesAsExcel(): void {
+  this.toast.show("Download in progress!");
     const tableElement = document.getElementById('tab-notes');
 
     // Convert HTML table to worksheet
