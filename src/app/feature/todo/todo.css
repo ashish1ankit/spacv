@@ -2,6 +2,7 @@ table {
     width: 100%;
     /* border-style: dotted; */
     border-radius: 8px;
+    border-style: none;
     box-shadow: 0 5px 15px rgba(252, 232, 119, 0.3);
 }
 
@@ -18,9 +19,11 @@ table {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(195, 7, 7, 0.3);
 text-decoration: solid;
+border-style: none;
 }
 .btnAddDiv{
-    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 100px;
 }
 
 .note {
@@ -28,32 +31,77 @@ text-decoration: solid;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 12px;
+    border-style: none;
+    right: 10px;
 }
-
+.notes{
+    border-style: none;
+    border-radius: 12px;
+}
+.slTh{
+    width: 100px;
+}
+.slThBtn{
+    border-style: none;
+    background-color: bisque;
+}
+.dateTh{
+    width: 170px;
+}
+.dateThBtn{
+    border-style: none;
+    background-color: bisque;
+    width: auto;
+    /* padding-right:80px; */
+    padding-left: 0px;
+    /* align-content: flex-end; */
+}
+.notesDateSearch{
+     border-style: none;
+    border-radius: 12px;
+    width: 109px;
+   /* position: absolute; */
+}
+.checkedBtnItems{
+    border-style: none;
+    background-color: bisque;
+    width: auto;
+    /* padding-right:80px; */
+    padding-left: 0px;
+}
+.checkedTh{
+    background-color: bisque;
+    border-style: none;
+    right: 20px;
+}
 th,
 td {
     background-color: bisque;
     border: 1px rgb(68, 24, 109);
-    border-style: groove;
+    border-style: none;
     border-radius: 40px;
     padding: 2px;
 }
 
 .mainDiv {
     position: relative;
+    border-style: none;
     /* padding-bottom: 120px; */
     /* padding-top: 20px; */
 }
 
 .btn-right-drp-down {
     float: right;
+    border-style: none;
+    border-radius: 40px;
 }
 
 .drop-down-content {
+    border-style: none;
     display: none;
     position: absolute;
     background-color: #95baff;
-
+border-radius: 40px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
