@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import * as XLSX from 'xlsx';
+import { ToastMessage } from "../../shared/component/toast-message/toast-message";
 
 @Component({
   selector: 'app-todo',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ToastMessage],
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
 export class Todo {
+  @ViewChild(ToastMessage) toast!: ToastMessage;
   //   ngOninit(userNotes: UserNotes){
   // this.getAllNotesData(userNotes);
   //   }
@@ -103,6 +105,7 @@ export class Todo {
 
   addListEntry() {
     this.mainData.push({ id: this.mainData.length + 1, name: 'New Task', ndate: (new Date()).toLocaleDateString(), checked: false });
+    this.toast.show("Added new Notes Successfully!");
   }
 
   // this.searchNotesInput=document.getElementById('searchNotes');

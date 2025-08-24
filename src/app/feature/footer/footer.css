@@ -1,9 +1,12 @@
 .mainDiv{
     background: #4fbce3;
     width: 100%;
-    padding-bottom: 20px;
-    padding: auto;
+    /* padding-bottom: 20px; */
+    /* padding: auto; */
     border-radius: 12px;
-    padding-top: 20px;
-    border-style: ridge;
+    padding-top: 1px;
+    border-style: groove;
+    position: fixed;
+    /* right: 50px; */
+    bottom: 50px;
 }
