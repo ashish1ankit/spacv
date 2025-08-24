@@ -1,7 +1,8 @@
 table {
     width: 100%;
-    border-style: dotted;
-    border-radius: 2px;
+    /* border-style: dotted; */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(252, 232, 119, 0.3);
 }
 
 .inputNote {
@@ -13,21 +14,28 @@ table {
     float: right;
     right: 40px;
     width: auto;
-    background: greenyellow;
-
+    background: rgb(255, 207, 241);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(195, 7, 7, 0.3);
+text-decoration: solid;
+}
+.btnAddDiv{
+    padding: 50px;
 }
 
 .note {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+    border-radius: 12px;
 }
 
 th,
 td {
     background-color: bisque;
-    border: 1px blueviolet;
+    border: 1px rgb(68, 24, 109);
     border-style: groove;
+    border-radius: 40px;
     padding: 2px;
 }
 

@@ -8,5 +8,14 @@
     border-style: groove;
     position: fixed;
     /* right: 50px; */
-    bottom: 50px;
+    bottom: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: #4fbce3;
+    width: 100%;
+    /* padding-right: 20px; */
+    /* right:2px; */
+    /* padding-bottom: 20px;
+    padding: auto; */
+    /* border-style: ridge; */
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
 }
